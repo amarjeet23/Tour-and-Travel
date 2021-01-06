@@ -2,10 +2,7 @@
 
 var jwt = require("jsonwebtoken");
 
-
-
-
-  // protected route auth
+  // protected route authorization
 
   exports.isLoggedIn = async(req,res,next)=>{
     try{
