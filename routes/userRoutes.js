@@ -5,6 +5,7 @@ const userController = require("../controllers/userController")
 const authController = require("../controllers/authController")
 
 
+// route for user
 router.post('/signup',authController.signup)
 router.post('/login',authController.login)
 
