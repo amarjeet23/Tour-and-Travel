@@ -9,10 +9,16 @@ const User = require("../models/userModel");
 // user signup
     exports.signup = async (req, res) => {
     try {
-        const { email } = req.body;
+        const { email,password} = req.body;
+        if (!email || !password) {
+            return res.status(400).json({
+            status: "Fail",
+            message: "please provide email and password",
+            });
+        }
         const user = await User.findOne({ email });
         if (user) {
-            return res.status(400).json({ errors: "user already registered" });
+            return res.status(400).json({ message: "user already registered" });
         }
         const newUser = await User.create(req.body);
         const token = signToken(newUser._id);
@@ -28,7 +34,7 @@ const User = require("../models/userModel");
     catch (err) {
         res.status(400).json({
         status: "Fail",
-        errors: err.errors,
+        error: err.errors,
         });
     }
     };
@@ -74,7 +80,7 @@ const User = require("../models/userModel");
     catch (err) {
         res.status(400).json({
         status: "fail",
-        errors: err,
+        error: err.errors
             });
         }
     };

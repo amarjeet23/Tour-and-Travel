@@ -3,11 +3,13 @@ require('dotenv').config()
 const express = require('express')
 const app = express();
 const mongoose = require('mongoose')
+const cors = require("cors")
 var bodyParser = require('body-parser')
 
 
 app.use(express.json())
 app.use(bodyParser.json())
+app.use(cors())
 
 mongoose.connect(process.env.url,{useNewUrlParser:true,useUnifiedTopology:true,createIndexes:true})
 .then((data)=>console.log("connected db......"))
